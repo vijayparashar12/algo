@@ -5,22 +5,29 @@ import java.util.Scanner;
 public class Solution {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
-		int noOftestCases = scanner.nextInt();
+		int noOftestCases = Integer.parseInt(scanner.nextLine());
 		for (int i = 0; i < noOftestCases; i++) {
 			String testCase = scanner.nextLine();
-			if (isPalindromes(testCase)) {
-				System.out.println(0);
-			} else {
-				int moves = convertToPalindromes(testCase);
-				System.out.println(moves);
-			}
+			int moves = countToPalindromes(testCase);
+			System.out.println(moves);
 		}
 		scanner.close();
 	}
 
-	protected static int convertToPalindromes(String testCase) {
-		
-		return 0;
+	protected static int countToPalindromes(String testCase) {
+		int i = 0, j = testCase.length() - 1;
+		int moves = 0;
+		while (i <= j) {
+			int c = (int) testCase.charAt(i++);
+			int d = (int) testCase.charAt(j--);
+			if (c > d) {
+				moves = moves + (c - d);
+			} else {
+				moves = moves + (d - c);
+			}
+
+		}
+		return moves;
 	}
 
 	protected static boolean isPalindromes(String testCase) {
