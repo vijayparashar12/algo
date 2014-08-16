@@ -29,17 +29,8 @@ public class Solution {
 	protected static int findGemCount(List<String> samples) {
 		int count = 0;
 		Pattern pattern = Pattern.compile("[a-zA-Z]");
-		/*
-		 * String minLenStr = samples.stream() .min((s1, s2) -> s1.length() -
-		 * s2.length()).get();
-		 */
-		String minLenStr = samples.get(0);
-		for (String s : samples) {
-			if (s.length() < minLenStr.length()) {
-				minLenStr = s;
-			}
-		}
-
+		String minLenStr = samples.stream()
+				.min((s1, s2) -> s1.length() - s2.length()).get();
 		Matcher matcher = pattern.matcher(minLenStr);
 		Set<String> uniuqe = new HashSet<String>();
 		while (matcher.find()) {
